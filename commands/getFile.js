@@ -1,7 +1,11 @@
+const { getFile } = require('../functions/functions.js');
+
 module.exports = {
   name: 'get',
-  description: 'Get File back from uploads folder',
+  description: 'get file from uploads.json',
   execute(message, args) {
-    message.channel.send('Pong.');
+    const { code, data } = getFile(args[0]);
+    if (code == 200) return message.channel.send(data);
+    message.channel.send('File nicht gefunden');
   },
 };
